@@ -199,7 +199,7 @@ for (let i = 0; i < channel_count; i++) {
         <label for="channel${chan_num}" class="col-md-1 col-form-label chan-label">Channel ${chan_num}:
             <input tabindex="-1" type="checkbox" class="form-check-input" id="check_ch${chan_num}" checked onclick="updateCheckedCh(${chan_num});" title="This checkbox toggles whether or not this field is included in the 311 status output">
         </label>
-        <button tabindex="-1" class="btn btn-condensed-px" type="button" onclick="addInfoBox(${chan_num})"><img src="/assets/circle_plus.svg" width="24" height="24" style="filter: invert(1)"></img></button>
+        <button tabindex="-1" class="btn btn-condensed-px" type="button" onclick="addInfoBox(${chan_num})"><img src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../releases/preview/7.0.0/png/iconmonstr-plus-circle-lined.png" width="24" height="24" style="filter: invert(1)"></img></button>
         <div class="col-5 d-grid px-1">
             <input autocomplete="off" id="channel${chan_num}" class="form-control" type="text" name="channel_text" placeholder="${placeholder}" value="${default_value}" >
         </div>
@@ -475,7 +475,7 @@ function postNewsAlert(message, type = 'News') {
         <div class="animated-right">
         <span class="text-muted container-fluid" id="text-news-top-${uuid}">
         <button tabindex="-1" class="btn btn-circle-news" type="button" onclick="$('#text-news-top-${uuid}').remove()" style="transform: translate(0, -5%);">
-            <img src="/assets/megaphone.svg" width="18" height="18" style="filter: invert(1); margin-left: 4px; transform: translate(0, -10%);"></img>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Icon-Megaphone.svg" width="18" height="18" style="filter: invert(1); margin-left: 4px; transform: translate(0, -10%);"></img>
             <span style="margin-right: 4px;">Hide ${type}<span>
         </button>
         ${message}

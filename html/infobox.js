@@ -47,12 +47,12 @@ function addInfoBox(chan_num, commanded_id) {
 		<div class="row py-1 background-blobs blobs-even-false infoBoxes anim-quick-slide-in" id="${uuid}" data-id="ibdid_${uuid}">
 			<label class="col-1 col-form-label chan-label" style="display: flex; flex-direction: row;">Information:
 				<input tabindex="-1" type="checkbox" class="form-check-input" id="check_${uuid}" checked onclick="updateCheckedInfo('${uuid}', parseInt(this.parentNode.parentNode.parentNode.id.split('infoBoxesCh')[1]));" title="This checkbox toggles whether or not this field is included in the 311 status output">
-				<img class="btn info_handle" src="/assets/sort.svg" height="32" style="filter: invert(1); width: fit-content; margin: 0px; passing: 0px"></img>
+				<img class="btn info_handle" src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../releases/preview/2014/png/iconmonstr-sort-27.png" height="32" style="filter: invert(1); width: fit-content; margin: 0px; passing: 0px"></img>
 			</label>
 			<div class="col-6 d-grid px-1">
 				<input autocomplete="off" id="info_${uuid}" class="form-control" type="text">
 			</div>
-			<button tabindex="-1" class="btn btn-condensed-px" type="button" onclick="deleteInfoBox(this, parseInt(this.parentNode.parentNode.id.split('infoBoxesCh')[1]))"><img src="/assets/circle_minus.svg" width="25" height="25" style="filter: invert(1)"></img></button>
+			<button tabindex="-1" class="btn btn-condensed-px" type="button" onclick="deleteInfoBox(this, parseInt(this.parentNode.parentNode.id.split('infoBoxesCh')[1]))"><img src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../releases/preview/7.2.0/png/iconmonstr-minus-circle-lined.png" width="25" height="25" style="filter: invert(1)"></img></button>
 			<div class="col d-grid px-1">
 				<button data-btn-type='secondary' tabindex="-1" type="button" class="btn"
 					onclick="infoButton('interference', parseInt(this.parentNode.parentNode.parentNode.id.split('infoBoxesCh')[1]), '#info_${uuid}');">🛑 Interference 🛑</button>

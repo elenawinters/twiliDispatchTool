@@ -65,11 +65,11 @@ function createNewCallBox(commanded_id) {
     }
     $(`#calls_sortable`).append(`
     <div data-id="call_d_${uuid}" class="row py-1 calls-item" id="call_${uuid}">
-        <img class="btn calls_handle" src="/assets/sort.svg" height="38" style="filter: invert(1); width: fit-content;"></img>
+        <img class="btn calls_handle" src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../releases/preview/2014/png/iconmonstr-sort-27.png" height="38" style="filter: invert(1); width: fit-content;"></img>
         <div class="col-10 d-grid px-1 calls-item">
             <input autocomplete="off" id="call_i_${uuid}" class="form-control calls-item" type="text"> 
         </div>
-        <button tabindex="-1" class="btn btn-condensed" type="button" onclick="$('#call_${uuid}').remove(); updateCallboxOutput();"><img src="/assets/circle_minus.svg" width="25" height="25" style="filter: invert(1)"></img></button>
+        <button tabindex="-1" class="btn btn-condensed" type="button" onclick="$('#call_${uuid}').remove(); updateCallboxOutput();"><img src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../releases/preview/7.2.0/png/iconmonstr-minus-circle-lined.png" width="25" height="25" style="filter: invert(1)"></img></button>
     </div>`)
 
     $(`#call_i_${uuid}`).on('input', (e) => {

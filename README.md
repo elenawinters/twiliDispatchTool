@@ -21,3 +21,11 @@ The original Dispatch Tool, made by ThePhilderbeast, never included a license. A
 ## Original Work
 
 https://gitlab.com/p6339/nopixel/dispatch-tools
+
+## Assets folder
+
+Icons in the assets folder came from Google Fonts or their origin is unknown.
+
+## Final remarks
+
+This was changed a bit from the non standalone version. The version that I have put so many hours into had slightly different infrastructure (relying on Discord authentication). I have modified this to work without it, but, honestly, expect it to crash occasionally. I offer no support for your use of this.

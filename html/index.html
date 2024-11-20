@@ -33,7 +33,7 @@
 
 		<div id="floating-page" class="floating-div" hidden>
 			<button class="btn btn-emote btn-condensed btn-circle-news btn-floating-div" onclick="hoverDivToggle(false)">
-				<img src="/assets/x-mark.svg" width="32" height="32" style="filter: invert(1);"></img>
+				<img src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../releases/preview/7.2.0/png/iconmonstr-x-mark-circle-lined.png" width="32" height="32" style="filter: invert(1);"></img>
 			</button>
 			<div id="changelog_div" class="floating-styles" style="z-index: 1001;" hidden></div>
 			<div id="announcement_div" class="floating-styles" style="z-index: 1001;" hidden></div>
@@ -93,7 +93,7 @@
 				<span style="font-size: 20px;">The Timeclock</span>
 				<button title="Timeclock" id="timeclock_btn_connect" tabindex="-1" class="btn btn-emote" type="button" onclick="syncConnect()">
 					<span id="timeclock_btn_text">Connect</span>
-					<img src="/assets/notepad.svg" width="32" height="32" style="filter: invert(1);"></img>
+					<img src="https://www.shareicon.net/download/2016/03/08/730699_notebook.svg" width="32" height="32" style="filter: invert(1);"></img>
 				</button>
 				<span>Below are notes, but shared between all!</span>
 				<div class="col" style="width: 50%;">
@@ -170,7 +170,7 @@
 				<div style="display: flex; flex-direction: row;">
 					<textarea data-btn-type='dark' data-ignore-btn-default="true" tabindex="-1" id="calls_tracker" name="calls_tracker" rows="9" class="form-control animated" style="width: 30%" readonly onclick="navigator.clipboard.writeText(this.value);"></textarea>
 					<button id="calls_tracker_btn" tabindex="-1" class="btn btn-condensed animated" type="button" onclick="createNewCallBox()" anchor="calls_tracker">
-						<img src="/assets/circle_plus.svg" width="24" height="24" style="filter: invert(1)"></img>
+						<img src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../releases/preview/7.0.0/png/iconmonstr-plus-circle-lined.png" width="24" height="24" style="filter: invert(1)"></img>
 					</button>
 					<div id="calls_sortable" style="display: flex; flex-direction: column; margin-left: 4%; width: 65%;">
 
@@ -202,7 +202,7 @@
 		
 		<div id="region-selector" style="display: none;">
 			<button class="btn btn-emote btn-condensed btn-circle-news btn-floating-div" onclick="regionSelectorState(false)" style="transform: translate(-5%, -15%);">
-				<img src="/assets/x-mark.svg" width="24" height="24" style="filter: invert(1); transform: translate(0%, -2.5%);"></img>
+				<img src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../releases/preview/7.2.0/png/iconmonstr-x-mark-circle-lined.png" width="24" height="24" style="filter: invert(1); transform: translate(0%, -2.5%);"></img>
 			</button>
 			<span>Select Region:</span><br><br>
 			<table class="table table-striped">
@@ -227,14 +227,14 @@
 					<div class="collapsed_features_loc">
 
 						<button id="bolo_area_btn" tabindex="-1" class="btn btn-condensed animated" title="Open/Collapse Hidden Features" type="button" onclick="if ($('#bolo_div').is(':hidden')) { $('.collapsed_feature').show() } else { $('.collapsed_feature').hide() }; updateResize();">
-							<img src="/assets/glasses.svg" width="24" height="24" style="filter: invert(1)"></img>
+							<img src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../releases/preview/2014/png/iconmonstr-glasses-1.png" width="24" height="24" style="filter: invert(1)"></img>
 						</button>
 						<button id="bolo_del_btn" tabindex="-1" class="btn btn-condensed animated collapsed_feature" title="Delete BOLO" type="button">
 							<!-- <div id="bolo_delete_sortable" style="max-width: 24px; max-height: 24px;"></div> -->
-							<img id="bolo_delete_sortable" src="/assets/trash.svg" width="24" height="24" style="filter: invert(1)"></img>
+							<img id="bolo_delete_sortable" src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../releases/preview/7.7.0/png/iconmonstr-trash-can-lined.png" width="24" height="24" style="filter: invert(1)"></img>
 						</button>
 						<button id="bolo_new_btn" tabindex="-1" class="btn btn-condensed animated collapsed_feature" title="Create BOLO" type="button"  onclick="createBOLO(0);">
-							<img src="/assets/circle_plus.svg" width="24" height="24" style="filter: invert(1)"></img>
+							<img src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../releases/preview/7.0.0/png/iconmonstr-plus-circle-lined.png" width="24" height="24" style="filter: invert(1)"></img>
 						</button>
 						<!-- <button id="bolo_area_btntest" tabindex="-1" class="btn btn-condensed animated" title="Open/Collapse Hidden Features" type="button" onclick="if ($('#bolo_div').is(':hidden')) { $('#bolo_div').show()} else { $('#bolo_div').hide() }; updateResize()">
 							<img src="/assets/compass.svg" width="24" height="24" style="filter: invert(1)"></img>
@@ -263,14 +263,16 @@
 
 				<div class="floating-toolbar anim-quick-slide-in" id="toolbar-expanded" hidden>
 					<button title="Return" id="widgets2_btn" tabindex="-1" class="btn btn-circle-news" type="button" onclick="document.getElementById('toolbar-expanded').hidden = true; document.getElementById('toolbar').hidden = false;" style="border-radius: 50%;">
-						<img src="/assets/expand-right.svg" width="32" height="32" style="filter: invert(1); rotate: 180deg;"></img>
+						<img src="/assets/expand_circle_right_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" width="32" height="32" style="rotate: 180deg;"></img>
 					</button>
 					<button title="Settings" id="settings_btn" tabindex="-1" class="btn btn-circle-news" type="button" onclick="hoverDivToggle(true, 'settings');" style="border-radius: 50%;">
-						<img src="/assets/settings.svg" width="32" height="32" style="filter: invert(1);"></img>
+						<img src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../releases/preview/2012/png/iconmonstr-gear-2.png" width="32" height="32" style="filter: invert(1);"></img>
 					</button>
 					<button title="10-90 o'Clock" id="heist_btn" tabindex="-1" class="btn btn-circle-news" type="button" onclick="hoverDivToggle(true, 'heist');" style="border-radius: 50%;">
-						<img id="bank-svg" src="/assets/bank.svg" width="32" height="32" style="filter: invert(1);"></img>
+						<img id="bank-svg" src="/assets/savings_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" width="32" height="32"></img>
 					</button>
+					<!-- Hey, note from me making the standalone project. These 2 things were planned like, a year ago, but eventually got scrapped! -->
+					<!-- I don't believe there's a need to include the icons for these so yeah, they are just missing icons (I still have them, but I don't wanna search for them) -->
 					<!-- The Vehicle Lookup, also called the VWD, will be a seperate webpage entirely. This will just popout an iframe of the other page. Keep it seperate. -->
 					<!-- Scrapped -->
 					<button hidden disabled title="Vehicle Lookup" id="vehicles_btn" tabindex="-1" class="btn btn-circle-news" type="button" onclick="hoverDivToggle(true, 'vehicles')" style="border-radius: 50%;">
@@ -281,38 +283,38 @@
 						<img src="/assets/sticky-note.svg" width="32" height="32" style="filter: invert(1);"></img>
 					</button>
 					<button title="About" id="about_btn" tabindex="-1" class="btn btn-circle-news" type="button" onclick="hoverDivToggle(true, 'about')" style="border-radius: 50%;">
-						<img src="/assets/info.svg" width="32" height="32" style="filter: invert(1);"></img>
+						<img src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../releases/preview/7.0.0/png/iconmonstr-info-lined.png" width="32" height="32" style="filter: invert(1);"></img>
 					</button>
 
 				</div>
 				
 				<div class="toolbar animated-right-far" id="toolbar">
 					<button title="Regions" id="region_btn" tabindex="-1" onmouseleave="showRegionSelector(false)" class="btn btn-circle-news" type="button" onclick="regionSelectorState(true);" style="border-radius: 50%; position: absolute; right: 4.5rem; display: none;">
-						<img id="region-svg" src="/assets/compass.svg" width="32" height="32" style="filter: invert(1);"></img>
+						<img id="region-svg" src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../releases/preview/2013/png/iconmonstr-compass-2.png" width="32" height="32" style="filter: invert(1);"></img>
 					</button>
 					<button title="Announcements" id="announcement_btn" tabindex="-1" onmouseenter="showRegionSelector(true)" class="btn btn-circle-news" type="button" onclick="hoverDivToggle(true, 'announcements'); anime.remove('#news-svg'); anime({targets: '#news-svg', rotate: '0deg'}); storeLastNewsChecked();" style="border-radius: 50%;">
-						<img id="news-svg" src="/assets/megaphone.svg" width="32" height="32" style="filter: invert(1);"></img>
+						<img id="news-svg" src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Icon-Megaphone.svg" width="32" height="32" style="filter: invert(1);"></img>
 					</button>
 					<button title="Changelog" id="changelog_btn" tabindex="-1" class="btn btn-circle-news" type="button" onclick="hoverDivToggle(true, 'changelog'); anime.remove('#changelog-svg'); anime({targets: '#changelog-svg', rotate: '0deg'}); storeLastVersionChecked()" style="border-radius: 50%;">
-						<img id="changelog-svg" src="/assets/versioning.svg" width="32" height="32" style="filter: invert(1);"></img>
+						<img id="changelog-svg" src="/assets/svgrepo-versioning.svg" width="32" height="32" style="filter: invert(1);"></img>
 					</button>
 					<button title="Admin" id="admin_btn" tabindex="-1" onmouseleave="showAdminMenu(false)" class="btn btn-circle-news" type="button" onclick="hoverDivToggle(true, 'admin')" style="border-radius: 50%; position: absolute; right: 4.5rem; top: 5.3rem; display: none;">
-						<img id="admin-svg" src="/assets/view.svg" width="32" height="32" style="filter: invert(1);"></img>
+						<img id="admin-svg" src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../releases/preview/2012/png/iconmonstr-view-17.png" width="32" height="32" style="filter: invert(1);"></img>
 					</button>
 					<div>
 						<button title="Timeclock" id="timeclock_btn" tabindex="-1" onmouseenter="showAdminMenu(true)" class="btn btn-circle-news" type="button" onclick="hoverDivToggle(true, 'timeclock');" style="border-radius: 50%;">
-							<img src="/assets/notepad.svg" width="32" height="32" style="filter: invert(1);"></img>
+							<img src="https://www.shareicon.net/download/2016/03/08/730699_notebook.svg" width="32" height="32" style="filter: invert(1);"></img>
 						</button>
 						<span id="timeclock-btn-units" anchor="timeclock_btn"></span>
 					</div>
 					<button title="Report Writer" id="reports_btn" tabindex="-1" class="btn btn-circle-news" type="button" onclick="hoverDivToggle(true, 'reports');" style="border-radius: 50%;">
-						<img src="/assets/article.svg" width="32" height="32" style="filter: invert(1);"></img>
+						<img src="/assets/article_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" width="32" height="32"></img>
 					</button>
 					<button title="911 Tracker" id="calls_btn" tabindex="-1" class="btn btn-circle-news" type="button" onclick="hoverDivToggle(true, 'calls');" style="border-radius: 50%;">
-						<img src="/assets/phone.svg" width="32" height="32" style="filter: invert(1); scale: 90%; margin-top: 2px;"></img>
+						<img src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../releases/preview/2012/png/iconmonstr-phone-7.png" width="32" height="32" style="filter: invert(1); scale: 90%; margin-top: 2px;"></img>
 					</button>
 					<button title="Additional Widgets" id="widgets_btn" tabindex="-1" class="btn btn-circle-news" type="button" onclick="document.getElementById('toolbar-expanded').hidden = false; document.getElementById('toolbar').hidden = true;" style="border-radius: 50%">
-						<img src="/assets/expand-right.svg" width="32" height="32" style="filter: invert(1);"></img>
+						<img src="/assets/expand_circle_right_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" width="32" height="32"></img>
 					</button>
 				</div>
 			</div>
@@ -356,9 +358,9 @@
 		<footer class="footer">
 			<div class="container-fluid">
 				<span class="text-muted">
-					<br>Contact Jaedlyn Sawyer (ElenaBerry) if broken.
-					<br><span id="version"></span>
-					<br><br>Last updated on <span id="version-date"></span>. Please let me know if you want something changed.
+					<br>Developed by <a tabindex="-1" href="https://twili.dev" target="_blank" style="color: #E797C2">ElenaBerry</a>
+					<br><br><span id="version"></span>
+					<br>Last updated on <span id="version-date"></span>. This is the final version.
 					<!-- <br><br>I'm entirely focused on adding useful widgets and polishing the shared sync currently. -->
 					<!-- <br><br>This is a beta version of the dispatch tool.
 					<br>If you'd like to use the release version, head over here: <a tabindex="-1" href="/np/dispatch">Dispatch Tool</a> -->

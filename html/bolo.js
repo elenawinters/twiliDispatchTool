@@ -89,7 +89,7 @@ function createBOLO(bucket, commanded_id) {
 
     $('#' + bolo_bucket_named[bucket]).append(`
     <div data-id="${uuid}" class="row py-1 bolo-item" id="bolo_${uuid}">
-        <img class="btn bolo_handle" src="/assets/sort.svg" height="38" style="filter: invert(1); width: fit-content;"></img>
+        <img class="btn bolo_handle" src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../releases/preview/2014/png/iconmonstr-sort-27.png" height="38" style="filter: invert(1); width: fit-content;"></img>
         <div class="d-grid px-1 bolo-item bolo_item_div">
             <input autocomplete="off" id="bolo_i_${uuid}" class="form-control bolo-item" type="text"> 
         </div>

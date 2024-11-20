@@ -169,6 +169,7 @@ function runWSClient() {
             connected_history = data['connected_history']
             $("#timeclock-btn-units").text(data['connections'].length)
             $('#name_columns').html('');
+            console.log(data['connections'])
             data['connections'].forEach((name) => {
                 $('#name_columns').append(`<tr><th scope="row" style="padding-left: 8px; padding-right: 16px;">${name}</th></tr>`)
             })

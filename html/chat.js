@@ -3,16 +3,17 @@ function resetChatbox() {
     $('#chat_table').empty()
 }
 
+// Dispatch Tool revolved heavily around having discord ids instead of a sender id
 $("#chat_typing").on('keyup', function (e) {
     if (e.key === 'Enter' || e.keyCode === 13) {
         let val = $('#chat_typing').val()
         if (val == '') return;
-        addChatMessage(default_data['identifier'], val)
+        addChatMessage(default_data['sender'], val)
         $('#chat_typing').val('')
 
         ws.send(encoder.encode({
             ...default_data,
-            'chat_new': [default_data['identifier'], val]
+            'chat_new': [default_data['sender'], val]
         }));
     }
 });
@@ -40,7 +41,7 @@ function addChatMessage(user, msg) {
             <td><sup>${cname}</sup><br>${msg}</td>
         </tr>
     `)
-    var a = new Audio('/assets/item-equip.mp3');
-    a.volume = 0.05;
-    a.play();
+    // var a = new Audio('/assets/item-equip.mp3');
+    // a.volume = 0.05;
+    // a.play();
 }

@@ -34,6 +34,8 @@ app.use('/', express.static(path.join(__dirname, 'html')));
 export const np_dispatch_router = express.Router();
 app.use('/api', np_dispatch_router);
 
+app.use('/assets', express.static(path.join(__dirname, 'assets')));
+
 interface RegionSync {
     'channels': {
         [key: string]: {
@@ -135,8 +137,8 @@ preliminaryConnectionHistory().then()
 
 function broadcastConnections(region: string) {
     let names: string[] = []
-    for (const [snowflake, senders] of Object.entries(regional[region].connections)) {
-        names.push(Object(senders)['nickname'])
+    for (const [sender, _] of Object.entries(regional[region].connections)) {
+        names.push(sender)
     }
     broadcast(region, null, {'type': 'updateConnected', 'connections': names, 'connected_history': regional[region].connected_history})
 }
