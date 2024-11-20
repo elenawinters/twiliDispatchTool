@@ -1,0 +1,80 @@
+// This is an attempt at an imitation of the NoPixel 4.0 MDT.
+
+$prototype-grey: #2C2F33;
+$font-stack: 'Noto Sans', sans-serif, 'Noto Color Emoji';
+$font-color: white;
+$orange-311: #ad5f00;  // this isn't the exact color
+$bg-gray-gradient: radial-gradient(141.63% 67.03% at 50% 50%,rgba(255,255,255,.08) 0%,rgba(255,255,255,0) 100%);
+$background: radial-gradient(158.02% 50% at 50% 50%,rgba(40,39,52,.95) 0%,rgba(14,14,20,.95) 100%);
+$btn-hover: radial-gradient(95% 65% at 50% 50%,#39ddb3,rgba(255,255,255,0));
+$mdw-blue: #1e3955;
+$mdw-text: #222832;
+$ten-6: #f38136;
+$ten-7: #e53f59;
+$ten-8: #689b50;
+$hrtag: #a9ff82;
+
+textarea, input[type=text], .text-fx, .sticky-margin-1 {
+    background-image: $bg-gray-gradient;
+
+    &:read-only {
+        background-image: $bg-gray-gradient;
+    }
+
+    &:hover {
+        border-color: rgba(0, 248, 185, 0.75);
+        color: #fff
+    }
+
+    &:focus {
+        background-image: $bg-gray-gradient;
+    }
+}
+
+
+body, #sticky-div {
+    background-image: $background
+}
+
+hr.twili, hr.twili2 {
+    background-color: $hrtag;
+
+}
+
+.floating-styles {
+    background-color: rgba(32,31,41,.95);
+    background-image: $bg-gray-gradient;
+}
+
+
+#timeclock-btn-chat, #timeclock-btn-units {
+    background-color: $ten-7;
+}
+
+.iframe-padding {
+    background-color: $mdw-blue;
+
+  }
+
+.btn-blue {
+    background-color: #2459ad;
+}
+
+.btn-emote, .btn-circle-emote, .btn-circle-news, .btn-condensed, .btn-condensed-px, .btn-default {
+    &:hover {
+        background: $btn-hover;
+    }
+
+}
+
+// .btn-circle-news, .btn-condensed, .btn-condensed-px
+.btn-default {
+    outline: 2px solid gray;
+
+    &:hover {
+        // background: $btn-hover;
+        // background-color: adjust-hue($color: $orange-311, $degrees: -5);
+        outline: 2px solid gray;
+    }
+
+}

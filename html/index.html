@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<!-- The below fucks up the dispay on mobile devices. This isn't a mobile app but I still kinda care. -->
+		<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+		
+		<title>The Dispatch Tool</title>
+		<link rel="icon" type="image/x-icon" href="/assets/dispatch-tool2.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+		
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+		<script crossorigin src="https://unpkg.com/@msgpack/msgpack"></script>
+		
+		<!-- https://github.com/SortableJS/Sortable -->
+		<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+
+		<link href="./dispatch.css" rel="stylesheet">
+		<link href="./styles2.css" rel="stylesheet">
+		<link id="dt-style" rel="stylesheet">
+
+		<script src="./proto.js" type="text/javascript"></script>
+		<script src="./settings.js" type="text/javascript"></script>
+
+		<!-- this is temporary i think | update 1/24/24: lol it's staying -->
+		<script src="https://unpkg.com/animejs@3.2.1/lib/anime.min.js"></script>
+	
+	</head>
+
+	<!-- filter: blur(2px);  -->
+	<body data-bs-theme="dark">
+
+		<div id="floating-page" class="floating-div" hidden>
+			<button class="btn btn-emote btn-condensed btn-circle-news btn-floating-div" onclick="hoverDivToggle(false)">
+				<img src="/assets/x-mark.svg" width="32" height="32" style="filter: invert(1);"></img>
+			</button>
+			<div id="changelog_div" class="floating-styles" style="z-index: 1001;" hidden></div>
+			<div id="announcement_div" class="floating-styles" style="z-index: 1001;" hidden></div>
+			<div id="settings_div" class="floating-styles" style="position:fixed; z-index: 1001; font-size: 20px;" hidden>
+				<span style="font-size: 30px; margin-right: 16px;">Settings</span>
+				<span style="font-size: 16px;">Tinker around!</span>
+				<hr class="twili2">
+				<span>
+					Select Dispatch Tool webpage style
+					<select id="setting_style_version" onchange="updateSettingSelect('style_version')">
+						<option value="-1">Legacy</option>
+						<option value="0">MDW</option>
+						<option value="1">MDT (Colored Buttons)</option>
+						<option value="2">MDT (Dark Buttons)</option>
+						<option value="99">WIP</option>
+					</select>
+				</span><br>
+				<span>
+					Automatically connect on page load
+					<label class="switch">
+						<input type="checkbox" id="setting_auto_ws_connect" onclick="updateSettingCheck('auto_ws_connect')" >
+						<span class="slider round"></span>
+					</label>
+				</span><br>
+				<span>
+					Include reply message in 311 output
+					<label class="switch">
+						<input type="checkbox" id="setting_replymsg" onclick="updateSettingCheck('replymsg')">
+						<span class="slider round"></span>
+					</label>
+				</span>
+			</div>
+			<!-- <div id="vehicles_div" class="floating-styles" style="position:fixed; z-index: 1001;" hidden>
+				<span style="font-size: 30px; margin-right: 30px;">The Vehicle Web Database (VWD)</span>
+				<span>Let's look up some vehicles!</span>
+				<button id="vwd_tab_btn" tabindex="-1" class="btn btn-emote vwd-tests" type="button" onclick="window.open('/np/vwd/', '_blank')">
+					<span>Open in new tab</span>
+					<img src="/assets/car.svg" width="32" height="32" style="filter: invert(1);"></img>
+				</button>
+				<div class="iframe-padding">
+					<iframe src="/np/vwd/" width="100%" height="100%"></iframe>
+				</div>
+			</div> -->
+			<!-- <div id="notepad_div" class="floating-styles" style="position:fixed; z-index: 1001; font-size: 40px;" hidden>
+				<span>The Notepad</span>
+				<button id="notepad_tab_btn" tabindex="-1" class="btn btn-emote vwd-tests" type="button" onclick="window.open('/np/notes/', '_blank')">
+					<span>Open in new tab</span>
+					<img src="/assets/sticky-note.svg" width="32" height="32" style="filter: invert(1);"></img>
+				</button>
+				<div class="iframe-padding">
+					<iframe src="/np/notes/" width="100%" height="100%"></iframe>
+				</div>
+			</div> -->
+			<div id="timeclock_div" class="container-fluid row floating-styles" style="position:fixed; z-index: 1001;" hidden>
+				<!-- padding-right: 3% -->
+				<!-- i cant be asked to put this in the css file, there's too much stuff and i need to swap to sass -->
+				<span style="font-size: 20px;">The Timeclock</span>
+				<button title="Timeclock" id="timeclock_btn_connect" tabindex="-1" class="btn btn-emote" type="button" onclick="syncConnect()">
+					<span id="timeclock_btn_text">Connect</span>
+					<img src="/assets/notepad.svg" width="32" height="32" style="filter: invert(1);"></img>
+				</button>
+				<span>Below are notes, but shared between all!</span>
+				<div class="col" style="width: 50%;">
+					<textarea id="shared_notes_textarea" name="sharedNotes" rows="12" class="form-control sticky-margin-1" style="margin-bottom: 32px;" placeholder="Notes, but shared between all!"></textarea>
+					<span>Currently connected users</span>
+					<table class="table table-striped d-flex" id="names_table">
+						<tr id="name_columns">
+							<th scope="row" style="padding-left: 8px; padding-right: 16px;">No current users</th>
+						</tr>
+					</table>
+					<br>
+				</div>
+			</div>
+			<div id="heist_div" class="floating-styles" style="position:fixed; z-index: 1001;" hidden>
+				<table class="table table-striped d-flex justify-content-center" id="heists_table">
+					<tr id="heist_column_headers">
+						<th scope="col">
+							Location
+						</th>
+						<th scope="col" class="text-center">
+							❌ <br />
+							Not Hit
+						</th>
+						<th scope="col" class="text-center">
+							⚠️ <br />
+							Being Hit
+						</th>
+						<th scope="col" class="text-center">
+							🚓 <br />
+							Has Response
+						</th>
+						<th scope="col" class="text-center">
+							✔️ <br />
+							Been Hit
+						</th>
+					</tr>
+					<tr>
+						<td colspan=5>
+							<textarea id="trackerMessage" name="trackerMessage" rows="1" class="form-control" readonly onclick="navigator.clipboard.writeText(this.value);"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td colspan=5>
+							<button data-btn-type='warning' type="button" class="btn" onclick="resetHeists()">Reset</button>
+							<label class="form-label" style="float: right">If you are using the sync, this is synced</label>
+						</td>
+					</tr>
+				</table>
+
+			</div>
+			<div id="reports_div" class="floating-styles" style="position:fixed; z-index: 1001;" hidden>
+				<div class="container">
+					<!-- <form hx-post="/api/report/" hx-target="#report" class="container" onsubmit="console.log(this);"></form> -->
+					<div class="row">
+						<div id="reports-appendable-col" class="col">
+							
+						</div>
+						<div class="col">
+							<div class="row p-3">
+								<button data-btn-type='blue' class="btn" onclick="resetReports()">Reset Report</button>
+							</div>
+							<div class="row p-3">
+								<label for="report" class="form-label">Dispatch Report</label>
+								<textarea readonly id="report" name="report" readonly rows="46" class="form-control" onclick="navigator.clipboard.writeText(this.value);"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<br>
+			</div>
+			<div id="calls_div" class="floating-styles" style="position:fixed; z-index: 1001;" hidden>
+				<span style="font-size: 30px; margin-right: 10px;">911s Tracker</span>
+				<span>For keeping track of outstanding 911 calls!</span>
+				<div style="display: flex; flex-direction: row;">
+					<textarea data-btn-type='dark' data-ignore-btn-default="true" tabindex="-1" id="calls_tracker" name="calls_tracker" rows="9" class="form-control animated" style="width: 30%" readonly onclick="navigator.clipboard.writeText(this.value);"></textarea>
+					<button id="calls_tracker_btn" tabindex="-1" class="btn btn-condensed animated" type="button" onclick="createNewCallBox()" anchor="calls_tracker">
+						<img src="/assets/circle_plus.svg" width="24" height="24" style="filter: invert(1)"></img>
+					</button>
+					<div id="calls_sortable" style="display: flex; flex-direction: column; margin-left: 4%; width: 65%;">
+
+					</div>
+				</div>
+				<br>
+			</div>
+			<div id="about_div" class="floating-styles" style="position:fixed; z-index: 1001; font-size: 20px;" hidden>
+				<span style="font-size: 30px;">Hey, you found the about section for this dumb tool</span><br>
+				<span style="font-size: 20px;">It's almost like I'm running out of things to add!</span>
+				<hr class="twili2">
+				<span>
+					Fonts from <a tabindex="-1" href="https://fonts.google.com" target="_blank">Google Fonts</a>
+					<br>Icons from <a tabindex="-1" href="https://iconmonstr.com/" target="_blank">iconmonstr</a> & <a tabindex="-1" href="https://fonts.google.com/icons" target="_blank">Google Fonts</a>
+					<br>Original tool by <a tabindex="-1" href="https://gitlab.com/ThePhilderbeast" target="_blank">ThePhilderbeast</a> (<a tabindex="-1" href="https://gitlab.com/p6339/nopixel/dispatch-tools" target="_blank">Gitlab: Dispatch Tool</a>)
+					<br>Cloned tool by MajorSleeper (<a tabindex="-1" href="https://dispatchtool.w3spaces.com/" target="_blank">The Legacy Dispatch Tool</a>)
+					<br><br>And to all of you.
+
+					<br><ul><li>ElenaBerry</li></ul>
+				</span>
+
+			</div>
+
+			<div id="admin_div" class="floating-styles" style="position:fixed; z-index: 1001; font-size: 20px;" hidden>
+				<span style="font-size: 20px;">The Admin Panel</span>
+			</div>
+
+		</div>
+		
+		<div id="region-selector" style="display: none;">
+			<button class="btn btn-emote btn-condensed btn-circle-news btn-floating-div" onclick="regionSelectorState(false)" style="transform: translate(-5%, -15%);">
+				<img src="/assets/x-mark.svg" width="24" height="24" style="filter: invert(1); transform: translate(0%, -2.5%);"></img>
+			</button>
+			<span>Select Region:</span><br><br>
+			<table class="table table-striped">
+				<!-- <colgroup>
+					<col span="1" style="width: 100%;">
+					<col span="1" style="width: 70%;">
+				</colgroup> -->
+				<tbody id="region_table">
+
+				</tbody>
+			</table>
+			<!-- <br> -->
+		</div>
+
+		<div id="sticky-div" style="display: flex; flex-direction: column;">
+			<div tabindex="-1" class="container-fluid row sticky-div-buttons anim-slide-in-top" id="emote_buttons"></div>
+			
+			<div class="container-fluid row sticky-div-textareas">
+				<div class="stick-left sticky-padding-1" style="display: flex; flex-direction: row;">
+					<textarea data-btn-type='dark' data-ignore-btn-default="true" tabindex="-1" id="radioChannels" name="radioChannels" rows="10" class="form-control sticky-margin-1 animated" readonly onclick="navigator.clipboard.writeText(this.value);"></textarea>
+
+					<div class="collapsed_features_loc">
+
+						<button id="bolo_area_btn" tabindex="-1" class="btn btn-condensed animated" title="Open/Collapse Hidden Features" type="button" onclick="if ($('#bolo_div').is(':hidden')) { $('.collapsed_feature').show() } else { $('.collapsed_feature').hide() }; updateResize();">
+							<img src="/assets/glasses.svg" width="24" height="24" style="filter: invert(1)"></img>
+						</button>
+						<button id="bolo_del_btn" tabindex="-1" class="btn btn-condensed animated collapsed_feature" title="Delete BOLO" type="button">
+							<!-- <div id="bolo_delete_sortable" style="max-width: 24px; max-height: 24px;"></div> -->
+							<img id="bolo_delete_sortable" src="/assets/trash.svg" width="24" height="24" style="filter: invert(1)"></img>
+						</button>
+						<button id="bolo_new_btn" tabindex="-1" class="btn btn-condensed animated collapsed_feature" title="Create BOLO" type="button"  onclick="createBOLO(0);">
+							<img src="/assets/circle_plus.svg" width="24" height="24" style="filter: invert(1)"></img>
+						</button>
+						<!-- <button id="bolo_area_btntest" tabindex="-1" class="btn btn-condensed animated" title="Open/Collapse Hidden Features" type="button" onclick="if ($('#bolo_div').is(':hidden')) { $('#bolo_div').show()} else { $('#bolo_div').hide() }; updateResize()">
+							<img src="/assets/compass.svg" width="24" height="24" style="filter: invert(1)"></img>
+						</button> -->
+					</div>
+				</div>
+				<div class="stick-right sticky-padding-1" id="notes_div">
+					<textarea id="notes" name="notes" rows="10" class="form-control sticky-margin-1 animated" placeholder="This empty box is for you to type data into!" title="This is not synced"></textarea>
+				</div>
+
+				<div id="chat_div" class="stick-chat sticky-padding-1 animated" style="display: none; top: 0.3vh">
+					<!-- <textarea rows="10" class="form-control sticky-margin-1 animated" placeholder="Chat-a-cam"></textarea> -->
+					<div id="chat_scroll" style="height: 13.5rem; overflow:auto; transform: scale(1,-1);" >
+						<table class="table table-striped" style="transform: scale(1,-1);">
+							<!-- <colgroup>
+								<col span="1" style="width: 100%;">
+								<col span="1" style="width: 70%;">
+							</colgroup> -->
+							<tbody id="chat_table">
+
+							</tbody>
+						</table>
+					</div>
+					<input autocomplete="off" id="chat_typing" class="form-control" type="text" maxlength="500" placeholder="Chat to others!">
+				</div>
+
+				<div class="floating-toolbar anim-quick-slide-in" id="toolbar-expanded" hidden>
+					<button title="Return" id="widgets2_btn" tabindex="-1" class="btn btn-circle-news" type="button" onclick="document.getElementById('toolbar-expanded').hidden = true; document.getElementById('toolbar').hidden = false;" style="border-radius: 50%;">
+						<img src="/assets/expand-right.svg" width="32" height="32" style="filter: invert(1); rotate: 180deg;"></img>
+					</button>
+					<button title="Settings" id="settings_btn" tabindex="-1" class="btn btn-circle-news" type="button" onclick="hoverDivToggle(true, 'settings');" style="border-radius: 50%;">
+						<img src="/assets/settings.svg" width="32" height="32" style="filter: invert(1);"></img>
+					</button>
+					<button title="10-90 o'Clock" id="heist_btn" tabindex="-1" class="btn btn-circle-news" type="button" onclick="hoverDivToggle(true, 'heist');" style="border-radius: 50%;">
+						<img id="bank-svg" src="/assets/bank.svg" width="32" height="32" style="filter: invert(1);"></img>
+					</button>
+					<!-- The Vehicle Lookup, also called the VWD, will be a seperate webpage entirely. This will just popout an iframe of the other page. Keep it seperate. -->
+					<!-- Scrapped -->
+					<button hidden disabled title="Vehicle Lookup" id="vehicles_btn" tabindex="-1" class="btn btn-circle-news" type="button" onclick="hoverDivToggle(true, 'vehicles')" style="border-radius: 50%;">
+						<img src="/assets/car.svg" width="32" height="32" style="filter: invert(1);"></img>
+					</button>
+					<!-- Scrapped -->
+					<button hidden disabled title="Notepad" id="notepad_btn" tabindex="-1" class="btn btn-circle-news" type="button" onclick="hoverDivToggle(true, 'notepad');" style="border-radius: 50%;">
+						<img src="/assets/sticky-note.svg" width="32" height="32" style="filter: invert(1);"></img>
+					</button>
+					<button title="About" id="about_btn" tabindex="-1" class="btn btn-circle-news" type="button" onclick="hoverDivToggle(true, 'about')" style="border-radius: 50%;">
+						<img src="/assets/info.svg" width="32" height="32" style="filter: invert(1);"></img>
+					</button>
+
+				</div>
+				
+				<div class="toolbar animated-right-far" id="toolbar">
+					<button title="Regions" id="region_btn" tabindex="-1" onmouseleave="showRegionSelector(false)" class="btn btn-circle-news" type="button" onclick="regionSelectorState(true);" style="border-radius: 50%; position: absolute; right: 4.5rem; display: none;">
+						<img id="region-svg" src="/assets/compass.svg" width="32" height="32" style="filter: invert(1);"></img>
+					</button>
+					<button title="Announcements" id="announcement_btn" tabindex="-1" onmouseenter="showRegionSelector(true)" class="btn btn-circle-news" type="button" onclick="hoverDivToggle(true, 'announcements'); anime.remove('#news-svg'); anime({targets: '#news-svg', rotate: '0deg'}); storeLastNewsChecked();" style="border-radius: 50%;">
+						<img id="news-svg" src="/assets/megaphone.svg" width="32" height="32" style="filter: invert(1);"></img>
+					</button>
+					<button title="Changelog" id="changelog_btn" tabindex="-1" class="btn btn-circle-news" type="button" onclick="hoverDivToggle(true, 'changelog'); anime.remove('#changelog-svg'); anime({targets: '#changelog-svg', rotate: '0deg'}); storeLastVersionChecked()" style="border-radius: 50%;">
+						<img id="changelog-svg" src="/assets/versioning.svg" width="32" height="32" style="filter: invert(1);"></img>
+					</button>
+					<button title="Admin" id="admin_btn" tabindex="-1" onmouseleave="showAdminMenu(false)" class="btn btn-circle-news" type="button" onclick="hoverDivToggle(true, 'admin')" style="border-radius: 50%; position: absolute; right: 4.5rem; top: 5.3rem; display: none;">
+						<img id="admin-svg" src="/assets/view.svg" width="32" height="32" style="filter: invert(1);"></img>
+					</button>
+					<div>
+						<button title="Timeclock" id="timeclock_btn" tabindex="-1" onmouseenter="showAdminMenu(true)" class="btn btn-circle-news" type="button" onclick="hoverDivToggle(true, 'timeclock');" style="border-radius: 50%;">
+							<img src="/assets/notepad.svg" width="32" height="32" style="filter: invert(1);"></img>
+						</button>
+						<span id="timeclock-btn-units" anchor="timeclock_btn"></span>
+					</div>
+					<button title="Report Writer" id="reports_btn" tabindex="-1" class="btn btn-circle-news" type="button" onclick="hoverDivToggle(true, 'reports');" style="border-radius: 50%;">
+						<img src="/assets/article.svg" width="32" height="32" style="filter: invert(1);"></img>
+					</button>
+					<button title="911 Tracker" id="calls_btn" tabindex="-1" class="btn btn-circle-news" type="button" onclick="hoverDivToggle(true, 'calls');" style="border-radius: 50%;">
+						<img src="/assets/phone.svg" width="32" height="32" style="filter: invert(1); scale: 90%; margin-top: 2px;"></img>
+					</button>
+					<button title="Additional Widgets" id="widgets_btn" tabindex="-1" class="btn btn-circle-news" type="button" onclick="document.getElementById('toolbar-expanded').hidden = false; document.getElementById('toolbar').hidden = true;" style="border-radius: 50%">
+						<img src="/assets/expand-right.svg" width="32" height="32" style="filter: invert(1);"></img>
+					</button>
+				</div>
+			</div>
+			<!-- <div class="container-fluid" id="bolo_div" style="display: none;"> -->
+			<!-- <div class="container-fluid" id="bolo_div" style="display: none;">
+				<textarea data-btn-type='dark' data-ignore-btn-default="true" tabindex="-1" id="test3" name="test3" rows="10" class="form-control sticky-margin-1 animated" readonly onclick="navigator.clipboard.writeText(this.value);"></textarea>
+			</div> -->
+			<div id="bolo_div" class="container-fluid collapsed_feature" style="display: none;">
+				<!-- <div style="display: flex; flex-direction: row;">
+					<textarea id="bolo_area" name="bolos" rows="6" class="form-control sticky-margin-1" placeholder="Active BOLOs" title="This is synced" style="width: 70vw; margin-right: 0.5vw;"></textarea>
+					<textarea id="footer_msg_area" name="footer" rows="6" class="form-control sticky-margin-1" placeholder="Footer Message" title="This is synced" style="width: 28vw">Please let dispatch know of opened or collapsed channels.</textarea>
+				</div> -->
+				<!-- <textarea id="bolo_area" name="notes" rows="6" class="form-control sticky-margin-1" placeholder="Active BOLOs" title="This is synced"></textarea> -->
+				<!-- <div id="calls_sortable" style="display: flex; flex-direction: column; margin-left: 4%; width: 65%;">
+
+				</div> -->
+				<div id="bolo_active_div" class="bolo_area" style="width: 40vw; border-right: 2px solid gray">
+					
+				</div>
+				<div id="bolo_inactive_div" class="bolo_area" style="width: 30vw; margin-left: 10px; border-right: 2px solid gray">
+					
+				</div>
+				<!-- <button id="bolo_del_btn" tabindex="-1" class="btn btn-condensed animated" title="Delete BOLO" type="button">
+					<img src="/assets/trash.svg" width="24" height="24" style="filter: invert(1)"></img>
+				</button> -->
+				
+				<textarea id="footer_msg_area" name="footer" rows="6" class="form-control sticky-margin-1" placeholder="Footer Message" title="This is synced" style="width: 28vw; margin-left: 0.5vw;">Please let dispatch know of opened or collapsed channels.</textarea>
+				<!-- <textarea data-btn-type='dark' data-ignore-btn-default="true" tabindex="-1" id="test3" name="test3" rows="10" class="form-control sticky-margin-1 animated" readonly onclick="navigator.clipboard.writeText(this.value);"></textarea> -->
+			</div>
+
+		</div>
+
+		<!-- NEVER TOUCH THE STICKY SPACER -->
+		<div id="sticky-spacer"></div>
+		<!-- IT IS THE SACRED ELEMENT -->
+
+		<div id="alertTests"></div>
+	
+		<div class="container-fluid anim-fade-in" id="input_fields"></div>
+
+		<footer class="footer">
+			<div class="container-fluid">
+				<span class="text-muted">
+					<br>Contact Jaedlyn Sawyer (ElenaBerry) if broken.
+					<br><span id="version"></span>
+					<br><br>Last updated on <span id="version-date"></span>. Please let me know if you want something changed.
+					<!-- <br><br>I'm entirely focused on adding useful widgets and polishing the shared sync currently. -->
+					<!-- <br><br>This is a beta version of the dispatch tool.
+					<br>If you'd like to use the release version, head over here: <a tabindex="-1" href="/np/dispatch">Dispatch Tool</a> -->
+					<br><br>
+				</span>
+			</div>
+		</footer>
+
+		<script src="./shared.js" type="text/javascript"></script>
+
+		<script src="./admin.js" type="text/javascript"></script>
+		<script src="./infobox.js" type="text/javascript"></script>
+		<script src="./dispatching.js" type="text/javascript"></script>
+		<script src="./chat.js" type="text/javascript"></script>
+
+		<script src="./timeclock.js" type="text/javascript"></script>
+		<script src="./reports.js" type="text/javascript"></script>
+		<script src="./calls.js" type="text/javascript"></script>
+		<script src="./10-90.js" type="text/javascript"></script>
+		<script src="./bolo.js" type="text/javascript"></script>
+
+	</body>
+</html>

@@ -1,0 +1,82 @@
+// TODO: This file can be cleaned up, as the dispatch.scss defines all the structures now
+// Currently, this file is replacing everything, which is unnessesary.
+
+/* Unit listings #30475d */
+/* CAD cards #19237e */
+/* Old btn color #2459ad */
+/* Old bg color #00345a */
+/* MDW color #1e3955 */
+/* 10-6 unit #f38136 */
+/* 10-7 unit #e53f59 */
+/* 10-8 unit #689b50 */
+/* MDW text box #222832 */
+// mdw-blue font-color
+$prototype-grey: #2C2F33;
+$font-stack: 'Noto Sans', sans-serif, 'Noto Color Emoji';
+$font-color: white;
+$orange-311: #ad5f00;  // this isn't the exact color
+$mdw-blue: #1e3955;
+$mdw-text: #222832;
+$ten-6: #f38136;
+$ten-7: #e53f59;
+$ten-8: #689b50;
+$hrtag: #a9ff82;
+
+textarea, input[type=text], .text-fx, .sticky-margin-1 {
+    background-color: $mdw-text;
+
+    &:read-only {
+        background-color: $mdw-text;
+    }
+
+    &:hover {
+        background-color: #30475d;
+    }
+
+    &:focus {
+        background-color: $mdw-blue;
+    }
+}
+
+
+.blobs-even-true {
+    background-color: #222032;
+}
+
+.blobs-even-false {
+    background-color: $mdw-text;
+}
+
+body, #sticky-div {
+    background-image: linear-gradient(to top right, #150018, #022757);
+}
+
+hr.twili, hr.twili2 {
+    background-color: $hrtag;
+
+}
+
+
+#timeclock-btn-chat, #timeclock-btn-units {
+    background-color: $ten-7;
+}
+
+.iframe-padding {
+    background-color: $mdw-blue;
+
+  }
+
+.btn-blue {
+    background-color: #2459ad;
+}
+
+.btn-emote, .btn-circle-emote, .btn-circle-news, .btn-condensed {
+    background-color: $orange-311;
+    border: 2px solid gray;
+
+    &:hover {
+        background-color: adjust-hue($color: $orange-311, $degrees: -5);
+        border: 2px solid gray;
+    }
+
+}

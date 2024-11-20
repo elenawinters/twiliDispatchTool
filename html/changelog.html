@@ -1,0 +1,296 @@
+<span>
+    <h1>Changelog</h1>
+    <img src="/assets/check.svg" width="24" height="24" style="filter: invert(1);"></img> means it's active on the main page,
+    <img src="/assets/flask.svg" width="24" height="24" style="filter: invert(1);"></img> means it's active on the beta
+    <hr class="twili">
+
+    <!-- <h5>Upcoming Update
+        <img src="/assets/flask.svg" width="24" height="24" style="filter: invert(1); margin-left: 8px;"></img>
+    </h5><hr class="twili2"><ul>
+        <li>Added an admin panel for the Dispatch Leads to use.</li>
+    </ul> -->
+
+    <h5>v24.9.26_01
+        <img src="/assets/check.svg" width="24" height="24" style="filter: invert(1); margin-left: 8px;"></img>
+        <img src="/assets/flask.svg" width="24" height="24" style="filter: invert(1); margin-left: 8px;"></img>
+    </h5><hr class="twili2"><ul>
+        <li>Implemented admin panel, currently nothing is implemented within the panel.</li>
+        <li>Chat window now tells you which region you are currently connected to.</li>
+        <li>Fix a connection issue revolving around regions.</li>
+    </ul>
+
+    <h5>v24.7.11_01</h5><hr class="twili2"><ul>
+        <li>Protocol update. Networking now uses MsgPack instead of JSON.</li>
+        <li>Implemented support for regions, currently disabled.</li>
+        <li>Re-implemented BOLOs to be more like the infobox and callbox systems.</li>
+    </ul>
+
+    <h5>v24.5.24_01</h5><hr class="twili2"><ul>
+        <li>Added the ability to edit the footer message generated in the 311 output. This is next to the Active BOLOs box.</li>
+    </ul>
+
+    <h5>v24.5.8_01</h5><hr class="twili2"><ul>
+        <li>Added a chat box (primarily to be used to communicate while using dashcams).</li>
+    </ul>
+
+    <h5>v24.5.3_02</h5><hr class="twili2"><ul>
+        <li>Misc fixes.</li>
+    </ul>
+
+    <h5>v24.5.3_01</h5><hr class="twili2"><ul>
+        <li>Infoboxes are now sortable after a massive rework.</li>
+    </ul>
+
+    <h5>v24.4.27_02</h5><hr class="twili2"><ul>
+        <li>The Active BOLO collapse is now under the sticky div instead of the main document.</li>
+        <li>The Active BOLO text area is now smaller (10 rows -> 6 rows).</li>
+    </ul>
+
+    <h5>v24.4.27_01</h5><hr class="twili2"><ul>
+        <li>Updated BOLOs. The field is now collapsed and can be expanded by clicking the glasses icon on the output box.</li>
+    </ul>
+
+    <h5>v24.4.26_01</h5><hr class="twili2"><ul>
+        <li>Added Active BOLOs.
+            <ul>
+                <li>These can be found at the bottom of the channel fields. When empty, no active BOLOs are included in the output. Otherwise, they are included.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h5>v24.4.16_01</h5><hr class="twili2"><ul>
+        <li>Backend updates.
+            <ul>
+                <li>Updated how modules are loaded. The beta can now be enabled by updating a single variable.</li>
+            </ul>
+        </li>
+        <li>Fixed an issue with the 10-90 o'Clock Tracker and Outstanding 911s Tracker not generating a valid output
+            <ul>
+                <li>TL;DR, they didn't work in 311s before. Now they do.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h5>v24.3.18_01</h5><hr class="twili2"><ul>
+        <li>Introducing a new style variant: The MDT with Dark Buttons.
+            <ul>
+                <li>This is the new default because it is a lot nicer on the eyes.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h5>v24.3.9_01</h5><hr class="twili2"><ul>
+        <li>A new widget has appeared! Introducing the outstanding 911s tracker.
+            <ul>
+                <li>As usual, this is 100% networked.</li>
+            </ul>
+        </li>
+        <li>Re-organized the toolbar and removed disabled/unfinished widgets.</li>
+        <li>Suspect Description in Report Writer is now a textarea instead of an input.</li>
+    </ul>
+
+    <h5>v24.2.29_01</h5><hr class="twili2"><ul>
+        <li>Regular notes are now saved locally via local storage in the browser.</li>
+        <li>Add new MDT style (this is the new default).</li>
+        <li>Updated 10-90 o'Clock.</li>
+    </ul>
+
+    <h5>v24.1.25_01</h5><hr class="twili2"><ul>
+        <li>Add support for multiple styles. These can be changed in the settings.</li>
+        <li>Transition from CSS to SCSS is complete.</li>
+        <li>Due to the updates, some animations are broken. I'm working on fixing these.</li>
+    </ul>
+
+    <h5>v24.1.24_01</h5><hr class="twili2"><ul>
+        <li>Updated Bootstrap.</li>
+        <li>Begin work on transitioning from CSS to SCSS.</li>
+        <li>Begin work on style sheet selector (will eventually have the legacy and a new style sheet available).</li>
+    </ul>
+
+    <h5>v23.12.28_01</h5><hr class="twili2"><ul>
+        <li>Updated channel placeholders.</li>
+    </ul>
+
+    
+    <hr class="twili"><h3>5 Year Gap</h3><hr class="twili">
+
+    <h5>v23.12.8_01</h5><hr class="twili2"><ul>
+        <li>Fixed time formatting issue with Report Writer.</li>
+    </ul>
+
+    <h5>v23.12.4_01</h5><hr class="twili2"><ul>
+        <li>Added the PBS Cleared and Open Fire information box buttons.</li>
+        <li>Added a version check. This only really matters if you hit the connect button after a server restart.</li>
+        <li>Added some settings.</li>
+        <!-- <li>Added The VWD.</li> -->
+        <!-- <li>Added The Notepad.</li> -->
+        <li>Fixed a large portion of buttons having invalid types.
+            <ul>
+                <li>Thanks to Microsoft Edge for actually pointing out this issue.</li>
+                <li>I did a goof when fixing the font color in v23.9.15_06.</li>
+            </ul>
+        </li>
+        <li>Added subchannels
+            <ul>
+                <li>This takes advantage of infoboxes and is literally just an added filter to them.</li>
+                <li>This will instead output the infobox as if it was a channel, such as 2.5. Example below.</li>
+                <ul>
+                    <li>.5 | This is a test</li>
+                </ul>
+            </ul>
+        </li>
+        
+
+    </ul>
+
+    <h5>v23.11.17_02</h5><hr class="twili2"><ul>
+        <li>Fixed issue that could cause the server to lose track of all of a single clients senders if one of those senders disconnected.
+            <ul>
+                <li>This may have been causing the disconnect issues, although I am uncertain.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h5>v23.11.17_01</h5><hr class="twili2"><ul>
+        <li>Added Discord authentication. Please log in with Discord and request @D-70 J. Sawyer for access.
+            <ul>
+                <li>There is an automated system in place to give most dispatchers access to the tool.</li>
+            </ul>
+        </li>
+        <li>Sync is now better. It will now only consistantly send a partial manifest instead of a full one.</li>
+        <li>Formatted the timeclock page to be more friendly.</li>
+        <li>Added Report Writer</li>
+        <li>Added 10-90 o'Clock</li>
+    </ul>
+
+    <h5>v23.11.3_01</h5><hr class="twili2"><ul>
+        <li>Re-added the beta</li>
+        <li>Added networking beta</li>
+        <li>Imported a bunch of stuff from the original dispatch tool. These are currently disabled</li>
+    </ul>
+
+    <h5>v23.10.26_02</h5><hr class="twili2"><ul>
+        <li>Added the 👟 emoji to replace the foot emoji.</li>
+    </ul>
+
+    <h5>v23.10.26_01</h5><hr class="twili2"><ul>
+        <li>Experimenting with different fonts. Currently trying
+            <a tabindex="-1" href="https://fonts.google.com/noto/specimen/Noto+Sans" target="_blank">Noto Sans</a>
+            and
+            <a tabindex="-1" href="https://fonts.google.com/noto/specimen/Noto+Color+Emoji" target="_blank">Noto Color Emoji</a>
+        </li>
+        <li>NOTE: This is only visual. Your 311's will still use your system default emoji's</li>
+        <li>Also removed the foot emoji. Why was this in Bay's emoji set?</li>
+    </ul>
+
+    <h5>v23.10.23_04</h5><hr class="twili2"><ul>
+        <li>Changelog and announcements now refresh every time you open their pages</li>
+
+    </ul>
+
+    <h5>v23.10.23_03</h5><hr class="twili2"><ul>
+        <li>Fixed issues with the toolbar being cut off when the window size is too small</li>
+
+    </ul>
+    <h5>v23.10.23_02</h5><hr class="twili2"><ul>
+        <li>Announcements and changelog are now pulled from a seperate page</li>
+        <li>Added icons to the changelog. Flask means beta, checkmark means stable
+            <ul>
+                <li>Stable in this case means what's on the main page. When the flask and the checkmark are on the same version, the pages are identical</li>
+            </ul>
+        </li>
+    </ul>
+    <h5>v23.10.23_01</h5><hr class="twili2"><ul>
+        <li>Moved changelog into it's own popout</li>
+    </ul>
+
+    <h5>v23.10.22_02</h5><hr class="twili2"><ul>
+        <li>Added this nifty area to view past updates and announcements</li>
+        <li>Please note that this is not final and may not stay for long</li>
+    </ul>
+
+    <h5>v23.10.14_01 - v23.10.14_02</h5><hr class="twili2"><ul>
+        <li>Added checkboxes to channel fields</li>
+        <li>Added news alert</li>
+    </ul>
+
+    <h5>v23.10.11_01 - v23.10.11_03</h5><hr class="twili2"><ul>
+        <li>Change character used in outputs that include additional information</li>
+        <li>Small style sheet changes</li>
+    </ul>
+
+    <h5>v23.10.10_01</h5><hr class="twili2"><ul>
+        <li>Prevent certain elements of the webpage from being able to be tab indexed, such as buttons</li>
+    </ul>
+
+    <h5>v23.10.8_01</h5><hr class="twili2"><ul>
+        <li>Added checkboxes to information boxes
+            <ul>
+                <li>If unchecked, the information will NOT be added to the output</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h5>v23.10.7_01 - v23.10.7_07</h5><hr class="twili2"><ul>
+        <li>Reversion of experimental style sheet from v23.9.26_01 due to unpopularity</li>
+    </ul>
+
+    <h5>v23.10.6_01 - v23.10.6_02</h5><hr class="twili2"><ul>
+        <li>Added information boxes
+        <ul>
+            <li>You can create an information box, and the contents will be added to the output box under the channel you created it under</li>
+        </ul>
+        </li>
+    </ul>
+
+    <h5>v23.9.27_01</h5><hr class="twili2"><ul>
+        <li>Restructure of the tool, it is now seperated into different pages, the live version and the beta version</li>
+    </ul>
+
+    <h5>v23.9.26_01</h5><hr class="twili2"><ul>
+        <li>Experimental style sheet being tested on beta</li>
+    </ul>
+
+    <h5>v23.9.20_01</h5><hr class="twili2"><ul>
+        <li>Added the 🚑 emote</li>
+    </ul>
+
+    <h5>v23.9.15_01 - v23.9.15_06</h5><hr class="twili2"><ul>
+        <li>Fixed the font color being wrong on some devices
+        <ul>
+            <li>The font color should always be white, but it was black on some devices</li>
+        </ul>
+        </li>
+        <li>Fixed issue with the output textbox (Ch1 would get overwritten)</li>
+    </ul>
+
+    <h5>v23.9.14_01 - v23.9.14_11</h5><hr class="twili2"><ul>
+        <li>Optimize the tool</li>
+        <li>Add emote buttons</li>
+        <li>Re-organize the stylesheet</li>
+        <li>New Style</li>
+        <li>Removed unused code</li>
+    </ul>
+
+    <h5>v23.9.8_01</h5><hr class="twili2"><ul>
+        <li>Clicking the output textbox now copies the contents to the clipboard</li>
+    </ul>
+
+    <h5>v23.9.7_01</h5><hr class="twili2"><ul>
+        <li>Added the notes textbox. Notes for days!</li>
+        <li>Updated placeholders</li>
+    </ul>
+
+    <h5>v23.8.31_02</h5><hr class="twili2"><ul>
+        <li>Make output textbox readonly</li>
+    </ul>
+
+    <h5>v23.8.31_01</h5><hr class="twili2"><ul>
+        <li>Make the code for the tool more readable. Visually identical to previous version</li>
+    </ul>
+
+    <h5>v23.8.30_01</h5><hr class="twili2"><ul>
+        <li>Cloned the previous version of the dispatch tool: <a tabindex="-1" href="https://dispatchtool.w3spaces.com/" target="_blank">Legacy Dispatch Tool</a></li>
+
+    </ul><br>
+</span>

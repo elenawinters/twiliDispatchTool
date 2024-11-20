@@ -1,0 +1,17 @@
+
+{
+    "channel_count": 20,
+    "valid_regions": [
+        "dt-np-wl",
+        "dt-np-br",
+        "dt-np-pg",
+        "dt-np-pb"
+    ],
+    "version": {
+        "protocol": 7,
+        "year": 2024,
+        "month": 9,
+        "day": 26,
+        "revision": 1
+    }
+}
